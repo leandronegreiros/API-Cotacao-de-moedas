@@ -19,12 +19,20 @@
                 <td>
                     <span 
                         class="label label-rounded text-smal"
-                        :class="{ 'label-error': quote.pctchange < 0, 'label-success':   quote.pctchange > 0}"    
+                        :class="{ 'label-error': quote.pctChange < 0, 'label-success':   quote.pctChange > 0}"    
                     >
                         {{ quote.pctChange }} %
                     </span>
                 </td>
-                <td></td>
+                <td>
+                    <a 
+                        href="" 
+                        class="btn btn-primary btn-sm tooltip tooltip-left"
+                        data-tooltip="Seguir"
+                    >
+                        <i class="icon icon-plus"></i>                        
+                    </a>
+                </td>
             </tr>
         </tbody>
     </table>
