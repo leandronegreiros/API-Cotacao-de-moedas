@@ -1,10 +1,25 @@
 <template>
   <div class="container grid-ls my-2 py-2">
+
+    <div class="card  mb-2" v-if="listenQuotes.length > 0">
+      <card class="card-header">
+        <div class="h4">Acompanhando</div>
+      </card>
+      <div class="card-body">
+        <WatchListQuotes :listen-quotes="listenQuotes"/>
+      </div>
+    </div>
+
     <div class="card">
       <div class="cad-header">
         <div class="h4">Todas as moedas</div>
         <div class="cad-body">
-          <ListQuotes :quotes="quotes"/>
+          <ListQuotes 
+            :quotes="quotes" 
+            :listen-quotes="listenQuotes"
+            @listen="onListen"
+            @unlisten="onUnListen"
+          />
         </div>
       </div>
     </div>
@@ -15,16 +30,17 @@
 import { onMounted, reactive, toRefs } from 'vue'
 import api from '@/services/api'
 import ListQuotes from './components/ListQuotes'
+import WatchListQuotes from './components/WatchListQuotes'
 
 export default { 
   name: "App",
-  components: { ListQuotes },
+  components: { ListQuotes, WatchListQuotes},
 
   setup() {
     
     const data = reactive({
       quotes: {},
-      test: ''
+      listenQuotes: [],
     })
 
     onMounted(async () =>{
@@ -32,7 +48,19 @@ export default {
       data.quotes = response.data
     })
 
-    return { ...toRefs(data) }
+    function onListen(code) {
+      data.listenQuotes.push(code);
+    }
+
+    function onUnListen(code) {
+      data.listenQuotes = data.listenQuotes.filter(key => key != code )
+    }
+
+    return { 
+      ...toRefs(data),
+      onListen,
+      onUnListen
+    }
   } 
 }
 </script>
