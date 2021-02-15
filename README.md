@@ -8,7 +8,7 @@ API para fazer a cotação de moedas usando o framework Vue.js version 3, retorn
 ## 🔥 Instalação e execução
 
 1. Faça um clone desse repositório;
-2. Entre na pasta `API-Cotacao-de-moedas`;
+2. Entre na pasta `api-cotacao-de-moedas`;
 3. Rode `yarn` dentro das pastas `api-cotacao-de-moedas`;
 4. Na pasta `api-cotacao-de-moedas` execute `yarn server`;
 
